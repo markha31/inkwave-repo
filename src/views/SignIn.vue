@@ -6,8 +6,8 @@
       <form>
         <h2>Connexion</h2>
 
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" v-model="formData.username">
+        <label for="email">Email :</label>
+        <input type="email" id="email" v-model="formData.email">
 
         <label for="password">Mot de passe :</label>
         <input type="password" id="password" v-model="formData.password">
@@ -15,25 +15,35 @@
 
         <button type="button" @click="submitForm">Valider</button>
       </form>
+      <p v-if="creationMessage" style="color: rgb(67, 191, 67);">{{ creationMessage }}</p>
     </div>
+
+    <Footer />
+
   </div>
 </template>
 
 <script>
 import Header from '../components/Header.vue';
+import Footer from '../components/Footer.vue';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/firebase';
+
 
 export default {
   name: 'SignIn',
   components: {
-    Header
+    Header,
+    Footer
   },
   data() {
     return {
       formData: {
-        username: '',
+        email: '',
         password: ''
       },
-      erreurPwd: ''
+      erreurPwd: '',
+      creationMessage: ''
     };
   },
   methods: {
@@ -45,8 +55,18 @@ export default {
 
       this.erreurPwd = '';
 
-      // Logique de connexion ici (envoyer les données au serveur, etc.)
       console.log('Formulaire de connexion soumis avec succès :', this.formData);
+
+      signInWithEmailAndPassword(auth, this.formData.email, this.formData.password)
+        .then((userCredential) => {
+          this.signInMessage = 'Utilisateur connecté.';
+          this.$router.push('/userpage');
+        })
+        .catch((error) => {
+          console.error(error);
+          this.erreurPwd = 'Email ou mot de passe incorrect.';
+          this.signInMessage = '';
+        });
     }
   }
 };

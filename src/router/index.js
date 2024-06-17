@@ -6,6 +6,9 @@ import Dessins from '../views/Dessins.vue';
 import ArtNumerique from '../views/ArtNumerique.vue';
 import Peintures from '../views/Peintures.vue';
 import Contact from '../views/Contact.vue';
+import UserPage from '../views/UserPage.vue';
+import Apropos from '../views/Apropos.vue';
+import Copyright from '../views/Copyright.vue';
 
 
 const routes = [
@@ -43,6 +46,21 @@ const routes = [
     path: '/contact',
     name: 'Contact', 
     component: Contact
+  },
+  {
+    path: '/userpage',
+    name: 'UserPage', 
+    component: UserPage
+  },
+  {
+    path: '/apropos',
+    name: 'Apropos', 
+    component: Apropos
+  },
+  {
+    path: '/copyright',
+    name: 'Copyright', 
+    component: Copyright
   },
 ];
 
