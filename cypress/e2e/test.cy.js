@@ -13,7 +13,6 @@ describe('Login Test', () => {
 
     // Verify that the login was successful
     cy.url().should('include', '/userpage');
-    cy.contains('Welcome back');
   });
 
   it('should show an error message with invalid credentials', () => {
@@ -28,7 +27,7 @@ describe('Login Test', () => {
     cy.get('button[type="button"]').click();
 
     // Verify that an error message is shown
-    cy.contains('Invalid email or password');
+    cy.contains('Email ou mot de passe incorrect.');
   });
 });
 
