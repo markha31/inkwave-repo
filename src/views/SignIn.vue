@@ -55,7 +55,7 @@ export default {
 
       this.erreurPwd = '';
 
-      console.log('Formulaire de connexion soumis avec succès :', this.formData);
+      console.log ('Formulaire de connexion soumis avec succès :', this.formData);
 
       signInWithEmailAndPassword(auth, this.formData.email, this.formData.password)
         .then((userCredential) => {
