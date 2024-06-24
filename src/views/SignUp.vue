@@ -240,8 +240,9 @@ button:hover {
 }
 .inputGroup {
   display: inline-block;
-  background-color: #63264a;
-  margin: 10px 0;
+  background: rgb(99,38,74);
+  border-radius: 3.5px;
+  margin-bottom: 5.5vh;
 
 label {
   padding: 12px 35px;
