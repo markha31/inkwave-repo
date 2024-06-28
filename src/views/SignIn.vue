@@ -136,4 +136,19 @@ button:hover {
   gap: 12px;
 }
 
+@media (max-width: 600px) {
+  .login-container {
+    padding: 10px;
+    border: none;
+    border-radius: 0;
+  }
+
+  .form-group input {
+    padding: 6px;
+  }
+
+  button {
+    padding: 8px;
+  }
+}
 </style>

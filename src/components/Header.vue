@@ -112,21 +112,17 @@ nav ul li a:hover {
   border-radius: 3px;
   background: none;
   cursor: pointer;
+  font-size: 15px;
 }
 
 .auth-links .signin:hover,
 .auth-links .signup:hover,
-.auth-links .userp:hover,
-.auth-links .signOut:hover {
+.auth-links .userp:hover {
   background-color: #cbeaa6;
   color: #000;
 }
 
-.auth-links .signOut {
-  background: none;
-  border: 1px solid #fff;
-  padding: 5px 10px;
-  border-radius: 3px;
-  cursor: pointer;
+.auth-links .signOut:hover {
+  background-color: #932145;
 }
 </style>
