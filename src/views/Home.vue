@@ -1,29 +1,30 @@
 <template>
   <div>
     <Header />
-    <main>
-      <div class="present">
-        <p>
-          Publiez vos œuvres et explorer les œuvres des artistes du monde entier
-          sur InkWave.
-        </p>
-        <p>Créer votre profil d’artiste pour mettre en valeur vos œuvres !</p>
-      </div>
-      <div class="homepage-album">
-        <h2>Nouveautés !</h2>
-        <div v-if="homepageImages.length">
-          <div v-for="image in homepageImages" :key="image" class="album-image">
-            <img :src="image" alt="User uploaded image" />
-          </div>
+      <main>
+        <div class="present">
+          <p>
+            Publiez vos œuvres et explorer les œuvres des artistes du monde entier
+            sur InkWave.
+          </p>
+          <p>Créer votre profil d’artiste pour mettre en valeur vos œuvres !</p>
         </div>
-        <div v-else>
-          <p>Aucune image disponible pour le moment.</p>
+      </main>
+    <div class="homepage-album">
+      <h2>Nouveautés !</h2>
+      <div v-if="homepageImages.length">
+        <div v-for="image in homepageImages" :key="image" class="album-image">
+          <img :src="image" alt="User uploaded image" />
         </div>
       </div>
-    </main>
+      <div v-else>
+        <p>Aucune image disponible pour le moment.</p>
+      </div>
+    </div>
     <Footer />
   </div>
 </template>
+
 
 <script>
 import Header from "../components/Header.vue";

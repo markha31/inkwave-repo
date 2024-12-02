@@ -1,4 +1,5 @@
 <template>
+
   <header>
     <div class="container">
       <router-link to="/" class="logo">
@@ -40,7 +41,7 @@ const router = useRouter();
 const isLoggedIn = ref(false);
 
 onMounted(() => {
-  auth.onAuthStateChanged(user => {
+  auth.onAuthStateChanged((user) => {
     isLoggedIn.value = !!user;
   });
 });
@@ -50,6 +51,7 @@ const signOut = async () => {
   isLoggedIn.value = false;
   router.push('/');
 };
+
 </script>
 
 

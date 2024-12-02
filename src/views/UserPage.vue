@@ -5,8 +5,8 @@
     <div class="centered-container">
       <div class="user-profile">
         <h2>Mon profil</h2>
-        <div class="user-info">
-          <p>@{{ username }}</p>
+        <div class="user-info"> 
+          <p>@{{ username }}</p> 
           <p>Type : {{ userType }}</p>
           <p>Email : {{ email }}</p>
         </div>
@@ -15,12 +15,12 @@
       <h3>Remplir l'album</h3>
       <div v-if="userType === 'artiste'">
         <div class="uploadSection">
-          <input type="file" @change="handleFileUpload" class="file-input"/>
+          <input type="file" @change="handleFileUpload " class="file-input"/>
           <button class="uploadImage" @click="uploadImage">Publier</button>
         </div>
       </div>
       <div v-else>
-        <p>Seuls les artistes peuvent télécharger des images et avoir un album.</p>
+        <p>Seuls les artistes peuvent  publier des images et avoir un album.</p>
       </div>
 
       <div class="album">
@@ -148,17 +148,34 @@ export default {
       }
     },
     async deleteImage(index, imageUrl) {
-      try {
-        const fileName = decodeURIComponent(imageUrl.split('%2F').pop().split('?')[0]);
-        const imageRef = storageRef(storage, `albums/${this.userId}/${fileName}`);
-        await deleteObject(imageRef);
-        this.albumImages.splice(index, 1);
-        const userAlbumRef = dbRef(database, `albums/${this.userId}`);
-        await set(userAlbumRef, { albumImages: this.albumImages });
-      } catch (error) {
-        console.error("Error deleting image:", error.message);
-      }
+  try {
+    const fileName = decodeURIComponent(imageUrl.split('%2F').pop().split('?')[0]);
+
+    // Remove from Firebase Storage
+    const imageRef = storageRef(storage, `albums/${this.userId}/${fileName}`);
+    await deleteObject(imageRef);
+
+    // Remove from user album in Realtime Database
+    this.albumImages.splice(index, 1);
+    const userAlbumRef = dbRef(database, `albums/${this.userId}`);
+    await set(userAlbumRef, { albumImages: this.albumImages });
+
+    // Remove from global `allImages` node in Realtime Database
+    const allImagesRef = dbRef(database, `allImages`);
+    const snapshot = await get(allImagesRef);
+
+    if (snapshot.exists()) {
+      const allImages = snapshot.val() || [];
+      const updatedImages = allImages.filter((url) => url !== imageUrl);
+      await set(allImagesRef, updatedImages);
     }
+
+    console.log("Image deleted successfully from user album and homepage.");
+  } catch (error) {
+    console.error("Error deleting image:", error.message);
+  }
+}
+
   },
 };
 </script>
@@ -172,16 +189,20 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .user-profile {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
   border-radius: 3px;
   margin-bottom: 20px;
+  margin-top: 10px;
   background: #ffffff url(../assets/back.jpg) center center/cover no-repeat;
   width: 100%;
 }
