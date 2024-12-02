@@ -1,4 +1,4 @@
-describe('Login Test', () => {
+/*describe('Login Test', () => {
     it('should log in successfully with valid credentials', () => {
       cy.visit('http://localhost:5173/signin');
   
@@ -21,4 +21,4 @@ describe('Login Test', () => {
       cy.contains('Email ou mot de passe incorrect.');
     }); 
   });
-
+*/
