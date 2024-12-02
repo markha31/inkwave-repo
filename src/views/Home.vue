@@ -70,7 +70,6 @@ export default {
   margin-top: 10vh;
   margin-bottom: 20vh;
 }
-
 .homepage-album {
   text-align: center;
   color: white;
