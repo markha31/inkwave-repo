@@ -6,9 +6,8 @@
       <div class="user-profile">
         <h2>Mon profil</h2>
         <div class="user-info"> 
-          <p>@{{ username }}</p> 
-          <p>Type : {{ userType }}</p>
-          <p>Email : {{ email }}</p>
+          <p class="at">{{ username }}</p> 
+          <p>{{ email }}</p>
         </div>
       </div>
 
@@ -203,7 +202,7 @@ export default {
   border-radius: 3px;
   margin-bottom: 20px;
   margin-top: 10px;
-  background: #ffffff url(../assets/back.jpg) center center/cover no-repeat;
+  background: #ffffff url(../assets/backk.jpg) center center/cover no-repeat;
   width: 100%;
 }
 
@@ -293,5 +292,11 @@ h3 {
 
 .user-info p {
   margin: 10px 0;
+  color:#63264a;
 }
+
+.at {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
 </style>

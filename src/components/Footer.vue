@@ -36,6 +36,7 @@
   </script>
   
   <style scoped>
+  
   footer {
     width: 100%;
     background-color: #cbeaa6;
